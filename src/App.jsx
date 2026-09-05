@@ -1,0 +1,75 @@
+import React, { useState, useRef } from 'react';
+import { motion, AnimatePresence } from 'framer-motion';
+import { FloatingParticles } from './components/FloatingParticles';
+import { AudioPlayer } from './components/AudioPlayer';
+import { HeroEnvelope } from './components/HeroEnvelope';
+import { CoupleSection } from './components/CoupleSection';
+import { NikahDetails } from './components/NikahDetails';
+import { VenueCard } from './components/VenueCard';
+import { EventTimeline } from './components/EventTimeline';
+import { CountdownTimer } from './components/CountdownTimer';
+import { InvitationMessage } from './components/InvitationMessage';
+import { FinalSection } from './components/FinalSection';
+
+export default function App() {
+  const [isOpened, setIsOpened] = useState(false);
+  const invitationContentRef = useRef(null);
+
+  const handleOpenInvitation = () => {
+    setIsOpened(true);
+    // Smoothly scroll down to begin exploring the invitation
+    setTimeout(() => {
+      invitationContentRef.current?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }, 600);
+  };
+
+  return (
+    <div className="relative min-h-screen bg-velvet-950 text-ivory-100 bg-islamic-pattern selection:bg-gold-400/30 selection:text-gold-200 overflow-x-hidden">
+      {/* Dynamic Gold Particles Ambient Canvas */}
+      <FloatingParticles count={40} />
+
+      {/* Persistent Floating Audio Controller */}
+      <AudioPlayer isTriggered={isOpened} />
+
+      {/* Main Container */}
+      <main className="relative z-10 flex flex-col items-center justify-center w-full">
+        {/* 1. HERO SECTION (Opening Experience) */}
+        <HeroEnvelope isOpened={isOpened} onOpen={handleOpenInvitation} />
+
+        {/* REVEALED INVITATION CONTENT */}
+        <AnimatePresence>
+          {isOpened && (
+            <motion.div
+              ref={invitationContentRef}
+              initial={{ opacity: 0, y: 40 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 1.2, ease: [0.16, 1, 0.3, 1] }}
+              className="w-full space-y-6 md:space-y-12"
+            >
+              {/* 2. COUPLE SECTION */}
+              <CoupleSection />
+
+              {/* 3. WEDDING & NIKAH SECTION */}
+              <NikahDetails />
+
+              {/* 4. VENUE SECTION */}
+              <VenueCard />
+
+              {/* 5. EVENT TIMELINE */}
+              <EventTimeline />
+
+              {/* 6. COUNTDOWN */}
+              <CountdownTimer />
+
+              {/* 7. INVITATION MESSAGE */}
+              <InvitationMessage />
+
+              {/* 8. FINAL SECTION */}
+              <FinalSection />
+            </motion.div>
+          )}
+        </AnimatePresence>
+      </main>
+    </div>
+  );
+}
