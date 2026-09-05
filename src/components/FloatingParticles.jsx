@@ -1,10 +1,10 @@
 import React, { useEffect, useRef } from 'react';
 
 /**
- * Floating Gold Particles Canvas
- * Lightweight, 60fps ambient background dust effect
+ * Ultra-Premium Floating Gold Dust & Twinkling Starburst Particles
+ * 60fps canvas particle field with 4-point sparkling stars and golden embers
  */
-export const FloatingParticles = ({ count = 45, interactive = true }) => {
+export const FloatingParticles = ({ count = 55 }) => {
   const canvasRef = useRef(null);
 
   useEffect(() => {
@@ -17,31 +17,25 @@ export const FloatingParticles = ({ count = 45, interactive = true }) => {
     let width = (canvas.width = window.innerWidth);
     let height = (canvas.height = window.innerHeight);
 
-    // Particle pool
-    const particles = [];
-    const colors = [
-      'rgba(212, 175, 55, ',   // Classic gold
-      'rgba(245, 226, 150, ',  // Champagne light gold
-      'rgba(197, 160, 89, ',   // Deep brass
-      'rgba(253, 251, 247, ',  // Warm ivory sparkle
-    ];
+    // Particle types: circles (dust) and 4-point starbursts (twinkling stars)
+    const createParticle = () => {
+      const isStar = Math.random() > 0.72;
+      return {
+        x: Math.random() * width,
+        y: Math.random() * height,
+        size: isStar ? Math.random() * 3 + 1.8 : Math.random() * 2.2 + 0.6,
+        isStar,
+        speedY: -(Math.random() * 0.45 + 0.15),
+        speedX: (Math.random() - 0.5) * 0.35,
+        baseAlpha: Math.random() * 0.65 + 0.25,
+        alpha: 0,
+        phase: Math.random() * Math.PI * 2,
+        phaseSpeed: 0.02 + Math.random() * 0.03,
+        color: Math.random() > 0.3 ? '#D4AF37' : '#F8ECC2',
+      };
+    };
 
-    const createParticle = () => ({
-      x: Math.random() * width,
-      y: Math.random() * height,
-      size: Math.random() * 2.2 + 0.6,
-      speedY: -(Math.random() * 0.4 + 0.15),
-      speedX: (Math.random() - 0.5) * 0.25,
-      baseAlpha: Math.random() * 0.6 + 0.2,
-      alpha: 0,
-      color: colors[Math.floor(Math.random() * colors.length)],
-      phase: Math.random() * Math.PI * 2,
-      phaseSpeed: 0.02 + Math.random() * 0.02,
-    });
-
-    for (let i = 0; i < count; i++) {
-      particles.push(createParticle());
-    }
+    const particles = Array.from({ length: count }, createParticle);
 
     const handleResize = () => {
       width = canvas.width = window.innerWidth;
@@ -50,7 +44,35 @@ export const FloatingParticles = ({ count = 45, interactive = true }) => {
 
     window.addEventListener('resize', handleResize);
 
-    // Render loop
+    // Draw 4-point starburst
+    const drawStar = (cx, cy, spikes, outerRadius, innerRadius, color, alpha) => {
+      let rot = (Math.PI / 2) * 3;
+      let x = cx;
+      let y = cy;
+      const step = Math.PI / spikes;
+
+      ctx.beginPath();
+      ctx.moveTo(cx, cy - outerRadius);
+      for (let i = 0; i < spikes; i++) {
+        x = cx + Math.cos(rot) * outerRadius;
+        y = cy + Math.sin(rot) * outerRadius;
+        ctx.lineTo(x, y);
+        rot += step;
+
+        x = cx + Math.cos(rot) * innerRadius;
+        y = cy + Math.sin(rot) * innerRadius;
+        ctx.lineTo(x, y);
+        rot += step;
+      }
+      ctx.lineTo(cx, cy - outerRadius);
+      ctx.closePath();
+      ctx.fillStyle = color;
+      ctx.globalAlpha = alpha;
+      ctx.shadowBlur = outerRadius * 4;
+      ctx.shadowColor = '#F8ECC2';
+      ctx.fill();
+    };
+
     const render = () => {
       ctx.clearRect(0, 0, width, height);
 
@@ -59,25 +81,30 @@ export const FloatingParticles = ({ count = 45, interactive = true }) => {
         p.x += p.speedX;
         p.phase += p.phaseSpeed;
 
-        // Pulsing twinkle alpha
         p.alpha = p.baseAlpha * (0.6 + 0.4 * Math.sin(p.phase));
 
-        // Re-spawn particle when leaving screen
-        if (p.y < -10) {
-          p.y = height + 10;
+        if (p.y < -15) {
+          p.y = height + 15;
           p.x = Math.random() * width;
         }
-        if (p.x < -10) p.x = width + 10;
-        if (p.x > width + 10) p.x = -10;
+        if (p.x < -15) p.x = width + 15;
+        if (p.x > width + 15) p.x = -15;
 
-        ctx.beginPath();
-        ctx.arc(p.x, p.y, p.size, 0, Math.PI * 2);
-        ctx.fillStyle = `${p.color}${p.alpha})`;
-        ctx.shadowBlur = p.size * 3;
-        ctx.shadowColor = 'rgba(212, 175, 55, 0.4)';
-        ctx.fill();
+        if (p.isStar) {
+          drawStar(p.x, p.y, 4, p.size * 2, p.size * 0.5, p.color, p.alpha);
+        } else {
+          ctx.beginPath();
+          ctx.arc(p.x, p.y, p.size, 0, Math.PI * 2);
+          ctx.fillStyle = p.color;
+          ctx.globalAlpha = p.alpha;
+          ctx.shadowBlur = p.size * 3;
+          ctx.shadowColor = '#D4AF37';
+          ctx.fill();
+        }
       });
 
+      ctx.globalAlpha = 1.0;
+      ctx.shadowBlur = 0;
       animationFrameId = requestAnimationFrame(render);
     };
 
@@ -93,7 +120,7 @@ export const FloatingParticles = ({ count = 45, interactive = true }) => {
     <canvas
       ref={canvasRef}
       aria-hidden="true"
-      className="pointer-events-none fixed inset-0 z-0 h-full w-full opacity-65"
+      className="pointer-events-none fixed inset-0 z-0 h-full w-full opacity-75"
     />
   );
 };

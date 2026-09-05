@@ -1,67 +1,92 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { CornerFlourish, IslamicStar, OrnateDivider, BismillahCalligraphy } from './OrnamentalElements';
+import { CornerFlourish, OrnateDivider, IslamicStar, BismillahCalligraphy } from './OrnamentalElements';
 import { Calendar, Clock, MapPin, Sparkles, Heart } from 'lucide-react';
 import confetti from 'canvas-confetti';
 
 export const HeroEnvelope = ({ isOpened, onOpen }) => {
+  const [isHovered, setIsHovered] = useState(false);
+
   const handleOpenClick = () => {
-    // Trigger celebratory gold confetti sparks
+    // Deluxe gold star and spark explosion
     try {
+      // 1. Center burst
       confetti({
-        particleCount: 50,
-        spread: 70,
-        origin: { y: 0.6 },
-        colors: ['#F5E296', '#D4AF37', '#FDFBF7', '#C5A059'],
+        particleCount: 70,
+        spread: 100,
+        origin: { y: 0.55 },
+        colors: ['#F8ECC2', '#D4AF37', '#FFFFFF', '#E6CA65', '#B88E33'],
+        shapes: ['circle', 'square'],
+        scalar: 1.1,
         disableForReducedMotion: true,
       });
+      // 2. Left and right cannons
+      setTimeout(() => {
+        confetti({
+          particleCount: 40,
+          angle: 60,
+          spread: 55,
+          origin: { x: 0.1, y: 0.6 },
+          colors: ['#F8ECC2', '#D4AF37'],
+          disableForReducedMotion: true,
+        });
+        confetti({
+          particleCount: 40,
+          angle: 120,
+          spread: 55,
+          origin: { x: 0.9, y: 0.6 },
+          colors: ['#F8ECC2', '#D4AF37'],
+          disableForReducedMotion: true,
+        });
+      }, 200);
     } catch (e) {
-      // safe fallback if confetti fails
+      // fallback safe
     }
     onOpen();
   };
 
   return (
-    <div className="relative w-full min-h-screen flex items-center justify-center px-4 py-12 md:py-20 overflow-hidden">
-      {/* Background Decorative Arch Vignette */}
+    <div className="relative w-full min-h-screen flex items-center justify-center px-4 py-12 md:py-20 overflow-hidden perspective-1000">
+      {/* Background Radial Gold Glow & Vignette */}
       <div className="absolute inset-0 bg-radial-vignette pointer-events-none" />
+      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-gold-400/5 rounded-full blur-3xl pointer-events-none" />
 
       {/* Floating floral botanical gold accents */}
       <motion.div
         animate={{
-          y: [0, -12, 0],
-          rotate: [0, 2, 0],
+          y: [0, -16, 0],
+          rotate: [0, 4, 0],
         }}
-        transition={{ duration: 7, repeat: Infinity, ease: 'easeInOut' }}
-        className="absolute top-10 left-6 md:left-20 opacity-20 pointer-events-none hidden sm:block"
+        transition={{ duration: 8, repeat: Infinity, ease: 'easeInOut' }}
+        className="absolute top-10 left-6 md:left-24 opacity-25 pointer-events-none hidden sm:block"
       >
-        <svg width="120" height="120" viewBox="0 0 100 100" fill="none">
-          <path d="M50 0 C60 30 80 40 100 50 C80 60 60 70 50 100 C40 70 20 60 0 50 C20 40 40 30 50 0 Z" stroke="#D4AF37" strokeWidth="0.8" />
-          <circle cx="50" cy="50" r="12" stroke="#D4AF37" strokeWidth="0.6" strokeDasharray="2 2" />
+        <svg width="130" height="130" viewBox="0 0 100 100" fill="none">
+          <path d="M50 0 C60 30 80 40 100 50 C80 60 60 70 50 100 C40 70 20 60 0 50 C20 40 40 30 50 0 Z" stroke="#D4AF37" strokeWidth="1" />
+          <circle cx="50" cy="50" r="14" stroke="#D4AF37" strokeWidth="0.8" strokeDasharray="3 3" />
         </svg>
       </motion.div>
 
       <motion.div
         animate={{
-          y: [0, 14, 0],
-          rotate: [0, -2, 0],
+          y: [0, 18, 0],
+          rotate: [0, -4, 0],
         }}
-        transition={{ duration: 8, repeat: Infinity, ease: 'easeInOut', delay: 1 }}
-        className="absolute bottom-12 right-6 md:right-20 opacity-20 pointer-events-none hidden sm:block"
+        transition={{ duration: 9, repeat: Infinity, ease: 'easeInOut', delay: 1 }}
+        className="absolute bottom-12 right-6 md:right-24 opacity-25 pointer-events-none hidden sm:block"
       >
-        <svg width="120" height="120" viewBox="0 0 100 100" fill="none">
-          <path d="M50 0 C60 30 80 40 100 50 C80 60 60 70 50 100 C40 70 20 60 0 50 C20 40 40 30 50 0 Z" stroke="#D4AF37" strokeWidth="0.8" />
-          <circle cx="50" cy="50" r="12" stroke="#D4AF37" strokeWidth="0.6" strokeDasharray="2 2" />
+        <svg width="130" height="130" viewBox="0 0 100 100" fill="none">
+          <path d="M50 0 C60 30 80 40 100 50 C80 60 60 70 50 100 C40 70 20 60 0 50 C20 40 40 30 50 0 Z" stroke="#D4AF37" strokeWidth="1" />
+          <circle cx="50" cy="50" r="14" stroke="#D4AF37" strokeWidth="0.8" strokeDasharray="3 3" />
         </svg>
       </motion.div>
 
-      {/* Main Luxury Invitation Card Container */}
+      {/* Main Luxury Folio Card Container */}
       <motion.div
         layout
-        initial={{ opacity: 0, scale: 0.94 }}
-        animate={{ opacity: 1, scale: 1 }}
+        initial={{ opacity: 0, scale: 0.92, y: 20 }}
+        animate={{ opacity: 1, scale: 1, y: 0 }}
         transition={{ duration: 1.2, ease: [0.16, 1, 0.3, 1] }}
-        className="relative z-10 w-full max-w-xl md:max-w-2xl bg-velvet-900/80 backdrop-blur-xl border border-gold-400/40 rounded-3xl p-6 sm:p-10 md:p-14 shadow-gold-glow-lg text-center"
+        className="relative z-10 w-full max-w-xl md:max-w-2xl bg-velvet-900/85 backdrop-blur-2xl border-2 border-gold-400/40 rounded-[2.5rem] p-6 sm:p-10 md:p-14 shadow-gold-glow-lg text-center royal-halo"
       >
         {/* Ornate Corner Flourishes */}
         <CornerFlourish position="top-left" className="w-12 h-12 sm:w-16 sm:h-16 text-gold-400/80 absolute top-3 left-3" />
@@ -69,63 +94,81 @@ export const HeroEnvelope = ({ isOpened, onOpen }) => {
         <CornerFlourish position="bottom-left" className="w-12 h-12 sm:w-16 sm:h-16 text-gold-400/80 absolute bottom-3 left-3" />
         <CornerFlourish position="bottom-right" className="w-12 h-12 sm:w-16 sm:h-16 text-gold-400/80 absolute bottom-3 right-3" />
 
-        {/* Outer and Inner Double Gold Border */}
-        <div className="absolute inset-2 sm:inset-3 border border-gold-400/25 rounded-2xl pointer-events-none" />
+        {/* Double Gold Inner Border */}
+        <div className="absolute inset-2 sm:inset-3 border border-gold-400/25 rounded-[2rem] pointer-events-none" />
 
-        {/* Bismillah Calligraphy Header */}
+        {/* Bismillah Calligraphy Header with gentle breathing animation */}
         <motion.div
-          initial={{ opacity: 0, y: -10 }}
+          initial={{ opacity: 0, y: -12 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 1, delay: 0.2 }}
           className="mb-4"
         >
-          <BismillahCalligraphy className="w-48 sm:w-64 text-gold-300 mx-auto" />
+          <BismillahCalligraphy className="w-48 sm:w-64 text-gold-300 mx-auto filter drop-shadow-[0_2px_12px_rgba(212,175,55,0.4)]" />
         </motion.div>
 
-        {/* Royal Monogram Medallion */}
+        {/* Royal Monogram Medallion Wax Seal */}
         <motion.div
-          initial={{ scale: 0.8, opacity: 0 }}
+          initial={{ scale: 0.75, opacity: 0 }}
           animate={{ scale: 1, opacity: 1 }}
-          transition={{ duration: 0.8, delay: 0.3 }}
-          className="relative inline-flex items-center justify-center mb-6"
+          transition={{ duration: 0.9, delay: 0.35, type: 'spring', stiffness: 120 }}
+          className="relative inline-flex items-center justify-center mb-6 cursor-pointer group"
+          onClick={!isOpened ? handleOpenClick : undefined}
+          onMouseEnter={() => setIsHovered(true)}
+          onMouseLeave={() => setIsHovered(false)}
         >
-          <div className="w-16 h-16 sm:w-20 sm:h-20 rounded-full border border-gold-400/60 bg-gradient-to-br from-velvet-800 to-velvet-950 flex items-center justify-center shadow-inner-gold">
-            <span className="font-cinzel text-base sm:text-xl font-bold text-gold-300 tracking-wider">
+          {/* Pulsing Aura Rings */}
+          <div className="absolute -inset-2 rounded-full border border-gold-400/40 animate-ping opacity-25 pointer-events-none" />
+          <div className="absolute -inset-1 rounded-full border border-gold-400/30 animate-spin" style={{ animationDuration: '24s' }} />
+
+          {/* 3D Wax Seal Badge */}
+          <motion.div
+            animate={{
+              scale: isHovered && !isOpened ? 1.08 : 1,
+              rotate: isHovered && !isOpened ? 3 : 0,
+            }}
+            transition={{ type: 'spring', stiffness: 300, damping: 15 }}
+            className="w-16 h-16 sm:w-20 sm:h-20 rounded-full border-2 border-gold-400/80 bg-gradient-to-br from-velvet-800 via-velvet-900 to-velvet-950 flex items-center justify-center shadow-gold-glow"
+          >
+            <span className="font-cinzel text-base sm:text-xl font-bold text-gold-300 tracking-widest">
               A <span className="text-gold-400 text-xs sm:text-sm font-normal">&amp;</span> D
             </span>
-          </div>
-          <div className="absolute -inset-1 rounded-full border border-gold-400/20 animate-spin" style={{ animationDuration: '30s' }} />
+          </motion.div>
         </motion.div>
 
         {/* Small Elegant Subtitle */}
         <motion.div
           initial={{ opacity: 0, y: 8 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 0.4 }}
+          transition={{ duration: 0.8, delay: 0.45 }}
           className="flex items-center justify-center gap-3 mb-4"
         >
-          <span className="h-[1px] w-8 sm:w-12 bg-gold-400/40" />
-          <p className="font-sans text-xs sm:text-sm uppercase tracking-[0.35em] text-gold-300/90 font-medium">
+          <span className="h-[1px] w-8 sm:w-14 bg-gradient-to-r from-transparent to-gold-400/60" />
+          <p className="font-sans text-xs sm:text-sm uppercase tracking-[0.35em] text-gold-300 font-semibold">
             WEDDING &amp; NIKAH
           </p>
-          <span className="h-[1px] w-8 sm:w-12 bg-gold-400/40" />
+          <span className="h-[1px] w-8 sm:w-14 bg-gradient-to-l from-transparent to-gold-400/60" />
         </motion.div>
 
-        {/* Main Typography Names */}
+        {/* Main Typography Names with radiant gold sweep shine */}
         <motion.div
-          initial={{ opacity: 0, y: 15 }}
+          initial={{ opacity: 0, y: 18 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 1, delay: 0.5 }}
+          transition={{ duration: 1, delay: 0.55 }}
           className="my-6 sm:my-8"
         >
           <h1 className="flex flex-col items-center justify-center gap-1 sm:gap-2">
-            <span className="font-cinzel text-3xl sm:text-5xl md:text-6xl font-bold tracking-wider text-gold-gradient drop-shadow-md">
+            <span className="font-cinzel text-3xl sm:text-5xl md:text-6xl font-bold tracking-wider gold-sweep drop-shadow-lg">
               Arbaeen
             </span>
-            <span className="font-script text-3xl sm:text-4xl md:text-5xl text-gold-300 py-1 font-normal select-none">
+            <motion.span
+              animate={{ scale: [1, 1.08, 1] }}
+              transition={{ duration: 3, repeat: Infinity, ease: 'easeInOut' }}
+              className="font-script text-3xl sm:text-4xl md:text-5xl text-gold-300 py-1 font-normal select-none"
+            >
               &amp;
-            </span>
-            <span className="font-cinzel text-3xl sm:text-5xl md:text-6xl font-bold tracking-wider text-gold-gradient drop-shadow-md">
+            </motion.span>
+            <span className="font-cinzel text-3xl sm:text-5xl md:text-6xl font-bold tracking-wider gold-sweep drop-shadow-lg">
               Danish
             </span>
           </h1>
@@ -138,7 +181,7 @@ export const HeroEnvelope = ({ isOpened, onOpen }) => {
         <motion.div
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
-          transition={{ duration: 0.9, delay: 0.65 }}
+          transition={{ duration: 0.9, delay: 0.7 }}
           className="space-y-2 sm:space-y-3 mb-8"
         >
           <div className="flex items-center justify-center gap-2 text-ivory-100 font-cormorant text-lg sm:text-2xl font-semibold tracking-widest uppercase">
@@ -157,26 +200,33 @@ export const HeroEnvelope = ({ isOpened, onOpen }) => {
           </div>
         </motion.div>
 
-        {/* OPEN INVITATION BUTTON (Or Invitation Opened Badge) */}
+        {/* OPEN INVITATION BUTTON */}
         <div className="relative pt-2">
           {!isOpened ? (
             <motion.div
-              initial={{ scale: 0.95, opacity: 0 }}
+              initial={{ scale: 0.92, opacity: 0 }}
               animate={{ scale: 1, opacity: 1 }}
-              transition={{ delay: 0.8, duration: 0.6 }}
+              transition={{ delay: 0.85, duration: 0.6 }}
               className="flex flex-col items-center"
             >
-              <button
+              <motion.button
+                whileHover={{ scale: 1.04, y: -2 }}
+                whileTap={{ scale: 0.97 }}
                 onClick={handleOpenClick}
-                className="group relative inline-flex items-center justify-center gap-3 px-8 sm:px-12 py-3.5 sm:py-4 rounded-full bg-gradient-to-r from-gold-500 via-gold-400 to-gold-600 text-velvet-950 font-cinzel text-xs sm:text-sm font-bold tracking-[0.25em] uppercase shadow-gold-glow hover:shadow-gold-glow-lg transition-all duration-300 transform hover:-translate-y-0.5 active:translate-y-0 focus:outline-none focus:ring-2 focus:ring-gold-300 focus:ring-offset-2 focus:ring-offset-velvet-950"
+                className="group relative inline-flex items-center justify-center gap-3 px-8 sm:px-12 py-3.5 sm:py-4 rounded-full bg-gradient-to-r from-gold-500 via-gold-400 to-gold-600 text-velvet-950 font-cinzel text-xs sm:text-sm font-bold tracking-[0.25em] uppercase shadow-gold-glow hover:shadow-gold-glow-lg transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-gold-300 focus:ring-offset-2 focus:ring-offset-velvet-950 overflow-hidden"
               >
-                <Sparkles className="w-4 h-4 text-velvet-950 animate-pulse" />
+                {/* Shining light sweep across button */}
+                <span className="absolute inset-0 w-full h-full bg-gradient-to-r from-transparent via-white/40 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-1000 ease-in-out pointer-events-none" />
+
+                <Sparkles className="w-4 h-4 text-velvet-950 animate-spin" style={{ animationDuration: '4s' }} />
                 <span>OPEN INVITATION</span>
-                <Sparkles className="w-4 h-4 text-velvet-950 animate-pulse" />
-                <span className="absolute inset-0 rounded-full border border-white/40 pointer-events-none" />
-              </button>
-              <p className="mt-3 text-[11px] text-gold-400/70 uppercase tracking-widest font-sans">
-                Tap to unfold royal invitation
+                <Sparkles className="w-4 h-4 text-velvet-950 animate-spin" style={{ animationDuration: '4s' }} />
+                <span className="absolute inset-0 rounded-full border border-white/50 pointer-events-none" />
+              </motion.button>
+              <p className="mt-3 text-[11px] text-gold-400/80 uppercase tracking-widest font-sans flex items-center gap-1.5">
+                <Sparkles size={11} className="text-gold-400" />
+                <span>Tap to unfold royal invitation</span>
+                <Sparkles size={11} className="text-gold-400" />
               </p>
             </motion.div>
           ) : (
@@ -186,13 +236,17 @@ export const HeroEnvelope = ({ isOpened, onOpen }) => {
               transition={{ duration: 0.6 }}
               className="flex flex-col items-center"
             >
-              <div className="inline-flex items-center gap-2 px-5 py-2 rounded-full bg-gold-400/10 border border-gold-400/30 text-gold-300 text-xs font-sans tracking-widest uppercase">
-                <Heart className="w-3.5 h-3.5 text-gold-400 fill-gold-400" />
+              <div className="inline-flex items-center gap-2 px-5 py-2 rounded-full bg-gold-400/10 border border-gold-400/40 text-gold-300 text-xs font-sans tracking-widest uppercase shadow-inner-gold">
+                <Heart className="w-3.5 h-3.5 text-gold-400 fill-gold-400 animate-pulse" />
                 <span>Invitation Unfolded</span>
               </div>
-              <p className="mt-2 text-xs text-ivory-300/60 font-sans">
-                Scroll down to view ceremony details &amp; venue
-              </p>
+              <motion.p
+                animate={{ y: [0, 4, 0] }}
+                transition={{ duration: 2, repeat: Infinity }}
+                className="mt-3 text-xs text-gold-300/80 font-sans"
+              >
+                ↓ Scroll down to view ceremony details &amp; venue ↓
+              </motion.p>
             </motion.div>
           )}
         </div>

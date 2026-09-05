@@ -72,7 +72,7 @@
   }
 
   .bg-arabesque {
-    background-image: radial-gradient(circle at 50% 50%, rgba(212, 175, 55, 0.06) 0%, transparent 60%);
+    background-image: radial-gradient(circle at 50% 50%, rgba(212, 175, 55, 0.08) 0%, transparent 65%);
   }
 
   .font-amiri {
@@ -92,6 +92,17 @@
   }
 }
 
+/* 3D Perspective utilities */
+.perspective-1000 {
+  perspective: 1000px;
+}
+.preserve-3d {
+  transform-style: preserve-3d;
+}
+.backface-hidden {
+  backface-visibility: hidden;
+}
+
 /* Mihrab Arch Shape */
 .arch-card {
   border-top-left-radius: 9999px;
@@ -100,29 +111,83 @@
   border-bottom-right-radius: 1.5rem;
 }
 
-/* Foil Shine Animation */
-@keyframes foilShimmer {
+/* Radiant Gold Foil Sweep */
+@keyframes goldLightSweep {
   0% {
-    background-position: -200% center;
+    background-position: -200% 0;
   }
   100% {
-    background-position: 200% center;
+    background-position: 200% 0;
   }
 }
 
-.gold-foil-shine {
+.gold-sweep {
   background: linear-gradient(
     90deg,
-    #b38728 0%,
-    #fbf5b7 25%,
-    #d4af37 50%,
-    #fbf5b7 75%,
-    #aa771c 100%
+    #D4AF37 0%,
+    #F8ECC2 20%,
+    #FFFFFF 30%,
+    #F8ECC2 40%,
+    #D4AF37 60%,
+    #9A7B2C 100%
   );
-  background-size: 200% auto;
+  background-size: 200% 100%;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
-  animation: foilShimmer 6s linear infinite;
+  animation: goldLightSweep 5s ease-in-out infinite;
+}
+
+/* Pulsing Gold Halo */
+@keyframes breathingHalo {
+  0%, 100% {
+    box-shadow: 0 0 20px rgba(212, 175, 55, 0.2), inset 0 0 15px rgba(212, 175, 55, 0.1);
+  }
+  50% {
+    box-shadow: 0 0 45px rgba(212, 175, 55, 0.4), inset 0 0 25px rgba(212, 175, 55, 0.2);
+  }
+}
+
+.royal-halo {
+  animation: breathingHalo 4s ease-in-out infinite;
+}
+
+/* Rotating Gold Border Beam */
+@keyframes rotateBorder {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+.border-beam-container {
+  position: relative;
+  overflow: hidden;
+}
+
+.border-beam-container::before {
+  content: '';
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: conic-gradient(
+    transparent 0deg,
+    rgba(212, 175, 55, 0.3) 60deg,
+    rgba(248, 236, 194, 0.8) 90deg,
+    rgba(212, 175, 55, 0.3) 120deg,
+    transparent 180deg
+  );
+  animation: rotateBorder 8s linear infinite;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.border-beam-inner {
+  position: relative;
+  z-index: 1;
 }
 
 @media (prefers-reduced-motion: reduce) {
