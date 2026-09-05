@@ -120,7 +120,7 @@ export const HeroEnvelope = ({ isOpened, onOpen }) => {
         >
           <h1 className="flex flex-col items-center justify-center gap-1 sm:gap-2">
             <span className="font-cinzel text-3xl sm:text-5xl md:text-6xl font-bold tracking-wider text-gold-gradient drop-shadow-md">
-              Arbain
+              Arbaeen
             </span>
             <span className="font-script text-3xl sm:text-4xl md:text-5xl text-gold-300 py-1 font-normal select-none">
               &amp;

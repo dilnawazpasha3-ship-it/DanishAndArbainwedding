@@ -72,7 +72,7 @@ export const FinalSection = () => {
           transition={{ delay: 0.3 }}
           className="font-cinzel text-3xl sm:text-5xl md:text-6xl font-bold tracking-wider text-gold-gradient mb-4"
         >
-          Arbain &amp; Danish
+          Arbaeen &amp; Danish
         </motion.h2>
 
         {/* Date */}
@@ -123,7 +123,7 @@ export const FinalSection = () => {
 
       <div className="mt-6 text-center text-ivory-300/40 text-xs font-sans font-light">
         <p>In the name of Allah, the Most Gracious, the Most Merciful</p>
-        <p className="mt-1">Arbain &amp; Danish • 14 December 2026 • Shehnaz Palace Banquet Hall</p>
+        <p className="mt-1">Arbaeen &amp; Danish • 14 December 2026 • Shehnaz Palace Banquet Hall</p>
       </div>
     </footer>
   );

@@ -11,9 +11,9 @@ export const VenueCard = () => {
   // Google Calendar link
   // 14 December 2026, 12:00 PM to 4:00 PM (20261214T120000 / 20261214T160000)
   const calendarUrl = `https://calendar.google.com/calendar/render?action=TEMPLATE&text=${encodeURIComponent(
-    "Arbain & Danish | Wedding & Nikah"
+    "Arbaeen & Danish | Wedding & Nikah"
   )}&dates=20261214T120000/20261214T160000&details=${encodeURIComponent(
-    "Celebration of the Wedding & Nikah of Arbain and Danish at Shehnaz Palace Banquet Hall."
+    "Celebration of the Wedding & Nikah of Arbaeen and Danish at Shehnaz Palace Banquet Hall."
   )}&location=${encodeURIComponent(venueName)}`;
 
   const handleCopy = () => {

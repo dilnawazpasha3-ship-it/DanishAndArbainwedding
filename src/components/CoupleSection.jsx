@@ -45,7 +45,7 @@ export const CoupleSection = () => {
           THE UNION OF TWO SOULS
         </span>
         <h2 className="font-cinzel text-3xl sm:text-4xl md:text-5xl font-bold text-gold-gradient tracking-wide">
-          Arbain &amp; Danish
+          Arbaeen &amp; Danish
         </h2>
       </motion.div>
 
@@ -53,7 +53,7 @@ export const CoupleSection = () => {
 
       {/* Couple Introduction Cards */}
       <div className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-10 text-center">
-        {/* Bride Card: Arbain */}
+        {/* Bride Card: Arbaeen */}
         <motion.div
           initial={{ opacity: 0, x: -30 }}
           whileInView={{ opacity: 1, x: 0 }}
@@ -72,7 +72,7 @@ export const CoupleSection = () => {
             The Bride
           </span>
           <h3 className="font-cinzel text-2xl sm:text-3xl font-bold text-ivory-50 tracking-wider mb-4">
-            Arbain
+            Arbaeen
           </h3>
 
           <p className="font-sans text-sm text-ivory-200/80 leading-relaxed font-light">

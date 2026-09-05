@@ -38,7 +38,7 @@ export const InvitationMessage = () => {
           </p>
 
           <p className="font-cinzel text-2xl sm:text-3xl md:text-4xl font-bold text-gold-gradient py-2">
-            Arbain &amp; Danish
+            Arbaeen &amp; Danish
           </p>
 
           <p className="text-base sm:text-lg text-ivory-200/90 font-sans font-light leading-relaxed">
@@ -55,7 +55,7 @@ export const InvitationMessage = () => {
             Warmly Invited By
           </p>
           <p className="font-sans text-xs sm:text-sm text-ivory-300/80 font-light mt-1">
-            The Families of Arbain &amp; Danish
+            The Families of Arbaeen &amp; Danish
           </p>
         </div>
       </motion.div>
