@@ -2,6 +2,7 @@ import React, { useState, useRef } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { FloatingParticles } from './components/FloatingParticles';
 import { AudioPlayer } from './components/AudioPlayer';
+import { RoyalCurtains } from './components/RoyalCurtains';
 import { HeroEnvelope } from './components/HeroEnvelope';
 import { CoupleSection } from './components/CoupleSection';
 import { NikahDetails } from './components/NikahDetails';
@@ -17,16 +18,19 @@ export default function App() {
 
   const handleOpenInvitation = () => {
     setIsOpened(true);
-    // Smoothly scroll down to begin exploring the invitation
+    // Smoothly scroll down to begin exploring the invitation after curtain draws
     setTimeout(() => {
       invitationContentRef.current?.scrollIntoView({ behavior: 'smooth', block: 'start' });
-    }, 600);
+    }, 1200);
   };
 
   return (
     <div className="relative min-h-screen bg-velvet-950 text-ivory-100 bg-islamic-pattern selection:bg-gold-400/30 selection:text-gold-200 overflow-x-hidden">
       {/* Dynamic Gold Particles Ambient Canvas */}
-      <FloatingParticles count={40} />
+      <FloatingParticles count={45} />
+
+      {/* Royal Velvet Palace Curtains Opening Animation */}
+      <RoyalCurtains isOpened={isOpened} onOpen={handleOpenInvitation} />
 
       {/* Persistent Floating Audio Controller */}
       <AudioPlayer isTriggered={isOpened} />

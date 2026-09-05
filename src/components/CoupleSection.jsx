@@ -1,6 +1,7 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import { CornerFlourish, OrnateDivider, IslamicStar } from './OrnamentalElements';
+import { CoupleIllustration2D } from './CoupleIllustration2D';
 import { Heart, Moon, Sparkles } from 'lucide-react';
 
 export const CoupleSection = () => {
@@ -45,7 +46,7 @@ export const CoupleSection = () => {
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true }}
         transition={{ duration: 0.8 }}
-        className="mb-8"
+        className="mb-6"
       >
         <span className="font-sans text-xs uppercase tracking-[0.35em] text-gold-400 font-semibold block mb-2">
           THE UNION OF TWO SOULS
@@ -53,6 +54,17 @@ export const CoupleSection = () => {
         <h2 className="font-cinzel text-3xl sm:text-4xl md:text-5xl font-bold gold-sweep tracking-wide">
           Arbaeen &amp; Danish
         </h2>
+      </motion.div>
+
+      {/* Center 2D Royal Couple Illustration */}
+      <motion.div
+        initial={{ opacity: 0, scale: 0.9, y: 20 }}
+        whileInView={{ opacity: 1, scale: 1, y: 0 }}
+        viewport={{ once: true }}
+        transition={{ duration: 1, type: 'spring', stiffness: 90 }}
+        className="max-w-xs sm:max-w-md mx-auto mb-10"
+      >
+        <CoupleIllustration2D />
       </motion.div>
 
       <OrnateDivider className="mb-12 opacity-60" />

@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { CornerFlourish, OrnateDivider, IslamicStar, BismillahCalligraphy } from './OrnamentalElements';
+import { CoupleIllustration2D } from './CoupleIllustration2D';
 import { Calendar, Clock, MapPin, Sparkles, Heart } from 'lucide-react';
 import confetti from 'canvas-confetti';
 
@@ -233,19 +234,24 @@ export const HeroEnvelope = ({ isOpened, onOpen }) => {
             <motion.div
               initial={{ opacity: 0, scale: 0.9 }}
               animate={{ opacity: 1, scale: 1 }}
-              transition={{ duration: 0.6 }}
-              className="flex flex-col items-center"
+              transition={{ duration: 0.8, type: 'spring', stiffness: 100 }}
+              className="flex flex-col items-center w-full"
             >
+              {/* 2D Royal Couple Animation */}
+              <div className="my-4 w-full max-w-xs sm:max-w-sm mx-auto">
+                <CoupleIllustration2D />
+              </div>
+
               <div className="inline-flex items-center gap-2 px-5 py-2 rounded-full bg-gold-400/10 border border-gold-400/40 text-gold-300 text-xs font-sans tracking-widest uppercase shadow-inner-gold">
                 <Heart className="w-3.5 h-3.5 text-gold-400 fill-gold-400 animate-pulse" />
-                <span>Invitation Unfolded</span>
+                <span>Royal Invitation Unveiled</span>
               </div>
               <motion.p
                 animate={{ y: [0, 4, 0] }}
                 transition={{ duration: 2, repeat: Infinity }}
                 className="mt-3 text-xs text-gold-300/80 font-sans"
               >
-                ↓ Scroll down to view ceremony details &amp; venue ↓
+                ↓ Scroll down to explore ceremony details &amp; venue ↓
               </motion.p>
             </motion.div>
           )}
