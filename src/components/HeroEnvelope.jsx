@@ -4,38 +4,41 @@ import { CornerFlourish, OrnateDivider, IslamicStar, BismillahCalligraphy } from
 import { CoupleIllustration2D } from './CoupleIllustration2D';
 import { Calendar, Clock, MapPin, Sparkles, Heart } from 'lucide-react';
 import confetti from 'canvas-confetti';
+import { playCinematicOpeningSound } from '../utils/audioEffects';
 
 export const HeroEnvelope = ({ isOpened, onOpen }) => {
   const [isHovered, setIsHovered] = useState(false);
 
   const handleOpenClick = () => {
-    // Deluxe gold star and spark explosion
+    // 1. Play celestial harp glissando chime
+    playCinematicOpeningSound();
+
+    // 2. Deluxe gold star and spark explosion
     try {
-      // 1. Center burst
       confetti({
-        particleCount: 70,
+        particleCount: 80,
         spread: 100,
         origin: { y: 0.55 },
         colors: ['#F8ECC2', '#D4AF37', '#FFFFFF', '#E6CA65', '#B88E33'],
         shapes: ['circle', 'square'],
-        scalar: 1.1,
+        scalar: 1.15,
         disableForReducedMotion: true,
       });
-      // 2. Left and right cannons
+
       setTimeout(() => {
         confetti({
-          particleCount: 40,
+          particleCount: 45,
           angle: 60,
-          spread: 55,
-          origin: { x: 0.1, y: 0.6 },
+          spread: 60,
+          origin: { x: 0.12, y: 0.6 },
           colors: ['#F8ECC2', '#D4AF37'],
           disableForReducedMotion: true,
         });
         confetti({
-          particleCount: 40,
+          particleCount: 45,
           angle: 120,
-          spread: 55,
-          origin: { x: 0.9, y: 0.6 },
+          spread: 60,
+          origin: { x: 0.88, y: 0.6 },
           colors: ['#F8ECC2', '#D4AF37'],
           disableForReducedMotion: true,
         });
@@ -50,7 +53,7 @@ export const HeroEnvelope = ({ isOpened, onOpen }) => {
     <div className="relative w-full min-h-screen flex items-center justify-center px-4 py-12 md:py-20 overflow-hidden perspective-1000">
       {/* Background Radial Gold Glow & Vignette */}
       <div className="absolute inset-0 bg-radial-vignette pointer-events-none" />
-      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-gold-400/5 rounded-full blur-3xl pointer-events-none" />
+      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[650px] h-[650px] bg-gold-400/8 rounded-full blur-3xl pointer-events-none" />
 
       {/* Floating floral botanical gold accents */}
       <motion.div
@@ -102,14 +105,14 @@ export const HeroEnvelope = ({ isOpened, onOpen }) => {
         {/* Double Gold Inner Border */}
         <div className={`absolute inset-2 sm:inset-3 border rounded-[2rem] pointer-events-none ${isOpened ? 'border-gold-500/30' : 'border-gold-400/25'}`} />
 
-        {/* Bismillah Calligraphy Header with gentle breathing animation */}
+        {/* Bismillah Calligraphy Header */}
         <motion.div
           initial={{ opacity: 0, y: -12 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 1, delay: 0.2 }}
           className="mb-4"
         >
-          <BismillahCalligraphy className={`w-48 sm:w-64 mx-auto filter drop-shadow-[0_2px_12px_rgba(212,175,55,0.4)] ${isOpened ? 'text-gold-600' : 'text-gold-300'}`} />
+          <BismillahCalligraphy className={`w-48 sm:w-64 mx-auto filter drop-shadow-[0_2px_12px_rgba(212,175,55,0.35)] ${isOpened ? 'text-gold-600' : 'text-gold-300'}`} />
         </motion.div>
 
         {/* Royal Monogram Medallion Wax Seal */}
@@ -124,7 +127,7 @@ export const HeroEnvelope = ({ isOpened, onOpen }) => {
         >
           {/* Pulsing Aura Rings */}
           <div className="absolute -inset-2 rounded-full border border-gold-400/40 animate-ping opacity-25 pointer-events-none" />
-          <div className="absolute -inset-1 rounded-full border border-gold-400/30 animate-spin" style={{ animationDuration: '24s' }} />
+          <div className="absolute -inset-1 rounded-full border border-gold-400/30 animate-spin pointer-events-none" style={{ animationDuration: '24s' }} />
 
           {/* 3D Wax Seal Badge */}
           <motion.div
@@ -133,10 +136,14 @@ export const HeroEnvelope = ({ isOpened, onOpen }) => {
               rotate: isHovered && !isOpened ? 3 : 0,
             }}
             transition={{ type: 'spring', stiffness: 300, damping: 15 }}
-            className="w-16 h-16 sm:w-20 sm:h-20 rounded-full border-2 border-gold-400/80 bg-gradient-to-br from-velvet-800 via-velvet-900 to-velvet-950 flex items-center justify-center shadow-gold-glow"
+            className={`w-16 h-16 sm:w-20 sm:h-20 rounded-full border-2 border-gold-400/80 flex items-center justify-center shadow-gold-glow ${
+              isOpened
+                ? 'bg-gradient-to-br from-[#FBF8EE] via-[#F3E9CD] to-[#DFCBA1] text-gold-900'
+                : 'bg-gradient-to-br from-velvet-800 via-velvet-900 to-velvet-950 text-gold-300'
+            }`}
           >
-            <span className="font-cinzel text-base sm:text-xl font-bold text-gold-300 tracking-widest">
-              A <span className="text-gold-400 text-xs sm:text-sm font-normal">&amp;</span> D
+            <span className={`font-cinzel text-base sm:text-xl font-bold tracking-widest ${isOpened ? 'text-gold-800' : 'text-gold-300'}`}>
+              A <span className="text-gold-600 text-xs sm:text-sm font-normal">&amp;</span> D
             </span>
           </motion.div>
         </motion.div>
@@ -149,7 +156,7 @@ export const HeroEnvelope = ({ isOpened, onOpen }) => {
           className="flex items-center justify-center gap-3 mb-4"
         >
           <span className="h-[1px] w-8 sm:w-14 bg-gradient-to-r from-transparent to-gold-400/60" />
-          <p className="font-sans text-xs sm:text-sm uppercase tracking-[0.35em] text-gold-300 font-semibold">
+          <p className={`font-sans text-xs sm:text-sm uppercase tracking-[0.35em] font-semibold ${isOpened ? 'text-gold-700' : 'text-gold-300'}`}>
             WEDDING &amp; NIKAH
           </p>
           <span className="h-[1px] w-8 sm:w-14 bg-gradient-to-l from-transparent to-gold-400/60" />
@@ -163,17 +170,17 @@ export const HeroEnvelope = ({ isOpened, onOpen }) => {
           className="my-6 sm:my-8"
         >
           <h1 className="flex flex-col items-center justify-center gap-1 sm:gap-2">
-            <span className="font-cinzel text-3xl sm:text-5xl md:text-6xl font-bold tracking-wider gold-sweep drop-shadow-lg">
+            <span className="font-cinzel text-3xl sm:text-5xl md:text-6xl font-bold tracking-wider gold-sweep drop-shadow-md">
               Arbaeen
             </span>
             <motion.span
               animate={{ scale: [1, 1.08, 1] }}
               transition={{ duration: 3, repeat: Infinity, ease: 'easeInOut' }}
-              className="font-script text-3xl sm:text-4xl md:text-5xl text-gold-300 py-1 font-normal select-none"
+              className={`font-script text-3xl sm:text-4xl md:text-5xl py-1 font-normal select-none ${isOpened ? 'text-gold-600' : 'text-gold-300'}`}
             >
               &amp;
             </motion.span>
-            <span className="font-cinzel text-3xl sm:text-5xl md:text-6xl font-bold tracking-wider gold-sweep drop-shadow-lg">
+            <span className="font-cinzel text-3xl sm:text-5xl md:text-6xl font-bold tracking-wider gold-sweep drop-shadow-md">
               Danish
             </span>
           </h1>
@@ -196,22 +203,22 @@ export const HeroEnvelope = ({ isOpened, onOpen }) => {
             <span>14 DECEMBER 2026</span>
           </div>
 
-          <div className={`flex items-center justify-center gap-2 font-sans text-sm sm:text-base tracking-widest uppercase font-medium ${
-            isOpened ? 'text-gold-700' : 'text-gold-200/90'
+          <div className={`flex items-center justify-center gap-2 font-sans text-sm sm:text-base tracking-widest uppercase font-semibold ${
+            isOpened ? 'text-gold-800' : 'text-gold-200/90'
           }`}>
             <Clock className={`w-3.5 h-3.5 sm:w-4 sm:h-4 ${isOpened ? 'text-gold-600' : 'text-gold-400'}`} />
             <span>12:00 PM</span>
           </div>
 
           <div className={`flex items-center justify-center gap-2 font-sans text-xs sm:text-sm tracking-wide pt-1 font-medium ${
-            isOpened ? 'text-[#4A4237]' : 'text-ivory-200/80'
+            isOpened ? 'text-[#3D372E]' : 'text-ivory-200/80'
           }`}>
             <MapPin className={`w-3.5 h-3.5 shrink-0 ${isOpened ? 'text-gold-600' : 'text-gold-400'}`} />
             <span>Shehnaz Palace Banquet Hall</span>
           </div>
         </motion.div>
 
-        {/* OPEN INVITATION BUTTON */}
+        {/* OPEN INVITATION BUTTON / REVEALED 2D COUPLE */}
         <div className="relative pt-2">
           {!isOpened ? (
             <motion.div
@@ -244,22 +251,22 @@ export const HeroEnvelope = ({ isOpened, onOpen }) => {
             <motion.div
               initial={{ opacity: 0, scale: 0.9 }}
               animate={{ opacity: 1, scale: 1 }}
-              transition={{ duration: 0.8, type: 'spring', stiffness: 100 }}
+              transition={{ duration: 1, type: 'spring', stiffness: 90 }}
               className="flex flex-col items-center w-full"
             >
-              {/* 2D Royal Couple Animation */}
-              <div className="my-4 w-full max-w-xs sm:max-w-sm mx-auto">
+              {/* 2D Royal Couple Vector Animation under Palace Arch */}
+              <div className="my-4 w-full max-w-xs sm:max-w-md mx-auto">
                 <CoupleIllustration2D />
               </div>
 
-              <div className="inline-flex items-center gap-2 px-5 py-2 rounded-full bg-gold-400/10 border border-gold-400/40 text-gold-300 text-xs font-sans tracking-widest uppercase shadow-inner-gold">
-                <Heart className="w-3.5 h-3.5 text-gold-400 fill-gold-400 animate-pulse" />
+              <div className="inline-flex items-center gap-2 px-5 py-2 rounded-full bg-gold-400/15 border border-gold-500/50 text-gold-800 text-xs font-sans tracking-widest uppercase shadow-inner-gold font-semibold">
+                <Heart className="w-3.5 h-3.5 text-gold-600 fill-gold-600 animate-pulse" />
                 <span>Royal Invitation Unveiled</span>
               </div>
               <motion.p
                 animate={{ y: [0, 4, 0] }}
                 transition={{ duration: 2, repeat: Infinity }}
-                className="mt-3 text-xs text-gold-300/80 font-sans"
+                className="mt-3 text-xs text-gold-800 font-sans font-medium"
               >
                 ↓ Scroll down to explore ceremony details &amp; venue ↓
               </motion.p>

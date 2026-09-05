@@ -18,19 +18,20 @@ export default function App() {
 
   const handleOpenInvitation = () => {
     setIsOpened(true);
-    // Smoothly scroll down to begin exploring the invitation after curtain draws
+    // Allow the theatrical 2.2s curtain unveiling to complete before gently inviting exploration
     setTimeout(() => {
       invitationContentRef.current?.scrollIntoView({ behavior: 'smooth', block: 'start' });
-    }, 1200);
+    }, 2200);
   };
+
   return (
     <div className={`relative min-h-screen transition-colors duration-1000 ${
       isOpened
         ? 'bg-ivory-pattern text-[#1C1A17] selection:bg-gold-500/20 selection:text-gold-900'
         : 'bg-velvet-950 text-ivory-100 bg-islamic-pattern selection:bg-gold-400/30 selection:text-gold-200'
     } overflow-x-hidden`}>
-      {/* Dynamic Gold Particles Ambient Canvas */}
-      <FloatingParticles count={45} />
+      {/* Dynamic Gold Dust, Stars & Drifting Flower Petals Canvas */}
+      <FloatingParticles count={60} />
 
       {/* Royal Velvet Palace Curtains Opening Animation */}
       <RoyalCurtains isOpened={isOpened} onOpen={handleOpenInvitation} />
@@ -40,7 +41,7 @@ export default function App() {
 
       {/* Main Container */}
       <main className="relative z-10 flex flex-col items-center justify-center w-full">
-        {/* 1. HERO SECTION (Opening Experience) */}
+        {/* 1. HERO SECTION (Opening Experience with 2D Couple Revelation) */}
         <HeroEnvelope isOpened={isOpened} onOpen={handleOpenInvitation} />
 
         {/* REVEALED INVITATION CONTENT */}
@@ -48,7 +49,7 @@ export default function App() {
           {isOpened && (
             <motion.div
               ref={invitationContentRef}
-              initial={{ opacity: 0, y: 40 }}
+              initial={{ opacity: 0, y: 50 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 1.2, ease: [0.16, 1, 0.3, 1] }}
               className="w-full space-y-6 md:space-y-12"
