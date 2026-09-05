@@ -162,40 +162,40 @@ export const AudioPlayer = ({ isTriggered = false }) => {
 
   return (
     <div className="fixed bottom-6 right-6 z-50 flex items-center gap-2">
-      <div className="flex items-center gap-2 bg-velvet-900/90 backdrop-blur-md border border-gold-400/40 rounded-full px-3.5 py-2 shadow-gold-glow">
+      <div className="flex items-center gap-2 bg-[#FAF7F0]/95 backdrop-blur-md border border-gold-500/50 rounded-full px-3.5 py-2 shadow-[0_4px_20px_rgba(212,175,55,0.25)]">
         <button
           onClick={togglePlay}
-          className="flex items-center gap-2 text-xs uppercase tracking-widest text-gold-200 hover:text-gold-100 transition-colors focus:outline-none"
+          className="flex items-center gap-2 text-xs uppercase tracking-widest text-gold-800 hover:text-gold-900 transition-colors focus:outline-none"
           title={isPlaying ? "Pause Ambient Music" : "Play Ambient Music"}
           aria-label={isPlaying ? "Pause Ambient Music" : "Play Ambient Music"}
         >
           <span className="relative flex h-2.5 w-2.5">
             {isPlaying && !isMuted && (
-              <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-gold-400 opacity-75"></span>
+              <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-gold-500 opacity-75"></span>
             )}
-            <span className={`relative inline-flex rounded-full h-2.5 w-2.5 ${isPlaying && !isMuted ? 'bg-gold-400' : 'bg-gold-600/50'}`}></span>
+            <span className={`relative inline-flex rounded-full h-2.5 w-2.5 ${isPlaying && !isMuted ? 'bg-gold-500' : 'bg-gold-600/50'}`}></span>
           </span>
 
-          <span className="hidden sm:inline font-sans text-[11px] text-gold-300 font-medium">
+          <span className="hidden sm:inline font-sans text-[11px] text-gold-800 font-bold">
             {isPlaying ? "Nikah Melody" : "Play Music"}
           </span>
 
           {/* Mini Equalizer visualizer bars */}
           {isPlaying && !isMuted ? (
             <div className="flex items-end gap-[2px] h-3.5 px-0.5">
-              <div className="w-[2.5px] bg-gold-400 animate-bounce h-2" style={{ animationDelay: '0ms', animationDuration: '600ms' }}></div>
-              <div className="w-[2.5px] bg-gold-400 animate-bounce h-3.5" style={{ animationDelay: '150ms', animationDuration: '800ms' }}></div>
-              <div className="w-[2.5px] bg-gold-400 animate-bounce h-2.5" style={{ animationDelay: '300ms', animationDuration: '700ms' }}></div>
+              <div className="w-[2.5px] bg-gold-600 animate-bounce h-2" style={{ animationDelay: '0ms', animationDuration: '600ms' }}></div>
+              <div className="w-[2.5px] bg-gold-600 animate-bounce h-3.5" style={{ animationDelay: '150ms', animationDuration: '800ms' }}></div>
+              <div className="w-[2.5px] bg-gold-600 animate-bounce h-2.5" style={{ animationDelay: '300ms', animationDuration: '700ms' }}></div>
             </div>
           ) : (
-            <Music size={14} className="text-gold-400/80" />
+            <Music size={14} className="text-gold-700" />
           )}
         </button>
 
         {isPlaying && (
           <button
             onClick={toggleMute}
-            className="text-gold-400 hover:text-gold-200 ml-1 p-1 rounded-full hover:bg-gold-400/10 transition"
+            className="text-gold-700 hover:text-gold-900 ml-1 p-1 rounded-full hover:bg-gold-500/10 transition"
             title={isMuted ? "Unmute" : "Mute"}
             aria-label={isMuted ? "Unmute" : "Mute"}
           >

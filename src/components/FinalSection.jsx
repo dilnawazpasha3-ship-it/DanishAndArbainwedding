@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
 import { CornerFlourish, OrnateDivider, IslamicStar } from './OrnamentalElements';
-import { Heart, Sparkles, ChevronUp } from 'lucide-react';
+import { Sparkles, ChevronUp } from 'lucide-react';
 import confetti from 'canvas-confetti';
 
 export const FinalSection = () => {
@@ -52,12 +52,12 @@ export const FinalSection = () => {
         whileInView={{ opacity: 1, y: 0, filter: 'blur(0px)' }}
         viewport={{ once: true, margin: '-50px' }}
         transition={{ duration: 1.1, ease: [0.16, 1, 0.3, 1] }}
-        className="relative bg-gradient-to-b from-velvet-900/90 via-velvet-950/95 to-velvet-950 border-2 border-gold-400/40 rounded-[2.5rem] p-8 sm:p-14 shadow-gold-glow-lg overflow-hidden royal-halo"
+        className="relative card-white-royal rounded-[2.5rem] p-8 sm:p-14 shadow-gold-glow overflow-hidden"
       >
-        <CornerFlourish position="top-left" className="w-14 h-14 text-gold-400/60 absolute top-3 left-3" />
-        <CornerFlourish position="top-right" className="w-14 h-14 text-gold-400/60 absolute top-3 right-3" />
-        <CornerFlourish position="bottom-left" className="w-14 h-14 text-gold-400/60 absolute bottom-3 left-3" />
-        <CornerFlourish position="bottom-right" className="w-14 h-14 text-gold-400/60 absolute bottom-3 right-3" />
+        <CornerFlourish position="top-left" className="w-14 h-14 text-gold-600/60 absolute top-3 left-3" />
+        <CornerFlourish position="top-right" className="w-14 h-14 text-gold-600/60 absolute top-3 right-3" />
+        <CornerFlourish position="bottom-left" className="w-14 h-14 text-gold-600/60 absolute bottom-3 left-3" />
+        <CornerFlourish position="bottom-right" className="w-14 h-14 text-gold-600/60 absolute bottom-3 right-3" />
 
         {/* Floating floral movement inside card */}
         <motion.div
@@ -66,9 +66,9 @@ export const FinalSection = () => {
             rotate: [0, 6, 0],
           }}
           transition={{ duration: 7, repeat: Infinity, ease: 'easeInOut' }}
-          className="w-16 h-16 sm:w-20 sm:h-20 mx-auto mb-6 rounded-full border border-gold-400/60 bg-velvet-800/90 flex items-center justify-center text-gold-300 shadow-inner-gold"
+          className="w-16 h-16 sm:w-20 sm:h-20 mx-auto mb-6 rounded-full border border-gold-400/60 bg-[#FBF7EE] flex items-center justify-center text-gold-700 shadow-inner-gold"
         >
-          <IslamicStar size={32} className="text-gold-400" />
+          <IslamicStar size={32} className="text-gold-600" />
         </motion.div>
 
         {/* Closing Greeting Text */}
@@ -77,7 +77,7 @@ export const FinalSection = () => {
           whileInView={{ opacity: 1 }}
           viewport={{ once: true }}
           transition={{ delay: 0.2 }}
-          className="font-script text-3xl sm:text-4xl md:text-5xl text-gold-300 mb-4 select-none"
+          className="font-script text-3xl sm:text-4xl md:text-5xl text-gold-700 mb-4 select-none"
         >
           With Love &amp; Blessings
         </motion.p>
@@ -88,7 +88,7 @@ export const FinalSection = () => {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ delay: 0.3 }}
-          className="font-cinzel text-3xl sm:text-5xl md:text-6xl font-bold tracking-wider gold-sweep mb-4"
+          className="font-cinzel text-3xl sm:text-5xl md:text-6xl font-bold tracking-wider text-gold-rich mb-4"
         >
           Arbaeen &amp; Danish
         </motion.h2>
@@ -99,12 +99,12 @@ export const FinalSection = () => {
           whileInView={{ opacity: 1 }}
           viewport={{ once: true }}
           transition={{ delay: 0.4 }}
-          className="font-cormorant text-xl sm:text-2xl text-ivory-100 uppercase tracking-[0.2em] font-semibold mb-8"
+          className="font-cormorant text-xl sm:text-2xl text-[#1C1A17] uppercase tracking-[0.2em] font-semibold mb-8"
         >
           14 December 2026
         </motion.p>
 
-        <OrnateDivider className="mb-8 opacity-60" />
+        <OrnateDivider className="mb-8 opacity-70" />
 
         {/* Send Du'a / Blessing Interaction */}
         <div className="flex flex-col items-center justify-center">
@@ -112,19 +112,19 @@ export const FinalSection = () => {
             whileHover={{ scale: 1.05, y: -2 }}
             whileTap={{ scale: 0.95 }}
             onClick={handleSendBlessing}
-            className="group relative inline-flex items-center gap-2.5 px-6 sm:px-9 py-3.5 sm:py-4 rounded-full border border-gold-400/50 bg-gradient-to-r from-gold-500/20 via-gold-400/30 to-gold-500/20 hover:border-gold-400 text-gold-200 font-sans text-xs sm:text-sm font-semibold tracking-widest uppercase transition-all shadow-gold-glow overflow-hidden focus:outline-none"
+            className="group relative inline-flex items-center gap-2.5 px-6 sm:px-9 py-3.5 sm:py-4 rounded-full border border-gold-500/60 bg-gradient-to-r from-gold-500/15 via-gold-400/25 to-gold-500/15 hover:border-gold-600 text-gold-800 font-sans text-xs sm:text-sm font-semibold tracking-widest uppercase transition-all shadow-md overflow-hidden focus:outline-none"
           >
-            <span className="absolute inset-0 w-full h-full bg-gradient-to-r from-transparent via-white/25 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-1000 ease-in-out pointer-events-none" />
-            <Sparkles className="w-4 h-4 text-gold-400 animate-spin" style={{ animationDuration: '6s' }} />
+            <span className="absolute inset-0 w-full h-full bg-gradient-to-r from-transparent via-white/40 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-1000 ease-in-out pointer-events-none" />
+            <Sparkles className="w-4 h-4 text-gold-600 animate-spin" style={{ animationDuration: '6s' }} />
             <span>{blessed ? "Du'a & Blessings Sent ❤️" : "Send Du'a & Blessings"}</span>
-            <Sparkles className="w-4 h-4 text-gold-400 animate-spin" style={{ animationDuration: '6s' }} />
+            <Sparkles className="w-4 h-4 text-gold-600 animate-spin" style={{ animationDuration: '6s' }} />
           </motion.button>
 
           {blessed && (
             <motion.p
               initial={{ opacity: 0, y: 8, scale: 0.95 }}
               animate={{ opacity: 1, y: 0, scale: 1 }}
-              className="font-cormorant italic text-gold-200 text-lg sm:text-xl mt-4"
+              className="font-cormorant italic text-gold-800 text-lg sm:text-xl mt-4 font-semibold"
             >
               JazakAllah Khair for your heartfelt prayers!
             </motion.p>
@@ -137,14 +137,14 @@ export const FinalSection = () => {
         <motion.button
           whileHover={{ y: -3 }}
           onClick={scrollToTop}
-          className="flex items-center gap-2 text-xs uppercase tracking-widest text-gold-400/70 hover:text-gold-300 transition-colors p-2 font-sans focus:outline-none"
+          className="flex items-center gap-2 text-xs uppercase tracking-widest text-gold-700 hover:text-gold-900 transition-colors p-2 font-sans font-semibold focus:outline-none"
         >
           <ChevronUp size={16} />
           <span>Back to Top</span>
         </motion.button>
       </div>
 
-      <div className="mt-6 text-center text-ivory-300/40 text-xs font-sans font-light">
+      <div className="mt-6 text-center text-[#5C5449] text-xs font-sans font-normal">
         <p>In the name of Allah, the Most Gracious, the Most Merciful</p>
         <p className="mt-1">Arbaeen &amp; Danish • 14 December 2026 • Shehnaz Palace Banquet Hall</p>
       </div>

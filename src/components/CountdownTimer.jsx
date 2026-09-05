@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { CornerFlourish, OrnateDivider, IslamicStar } from './OrnamentalElements';
-import { Clock, Sparkles } from 'lucide-react';
+import { Clock } from 'lucide-react';
 
 export const CountdownTimer = () => {
   // Target: 14 December 2026, 12:00:00 PM
@@ -50,29 +50,29 @@ export const CountdownTimer = () => {
         whileInView={{ opacity: 1, y: 0, filter: 'blur(0px)' }}
         viewport={{ once: true, margin: '-60px' }}
         transition={{ duration: 1 }}
-        className="relative bg-velvet-900/80 backdrop-blur-2xl border border-gold-400/35 rounded-[2.5rem] p-8 sm:p-12 shadow-gold-glow-lg overflow-hidden royal-halo"
+        className="relative card-white-royal rounded-[2.5rem] p-8 sm:p-12 shadow-gold-glow overflow-hidden"
       >
-        <CornerFlourish position="top-left" className="w-10 h-10 text-gold-400/50 absolute top-2 left-2" />
-        <CornerFlourish position="top-right" className="w-10 h-10 text-gold-400/50 absolute top-2 right-2" />
-        <CornerFlourish position="bottom-left" className="w-10 h-10 text-gold-400/50 absolute bottom-2 left-2" />
-        <CornerFlourish position="bottom-right" className="w-10 h-10 text-gold-400/50 absolute bottom-2 right-2" />
+        <CornerFlourish position="top-left" className="w-10 h-10 text-gold-600/60 absolute top-2 left-2" />
+        <CornerFlourish position="top-right" className="w-10 h-10 text-gold-600/60 absolute top-2 right-2" />
+        <CornerFlourish position="bottom-left" className="w-10 h-10 text-gold-600/60 absolute bottom-2 left-2" />
+        <CornerFlourish position="bottom-right" className="w-10 h-10 text-gold-600/60 absolute bottom-2 right-2" />
 
         <div className="flex items-center justify-center gap-2 mb-3">
-          <Clock className="w-4 h-4 text-gold-400 animate-spin" style={{ animationDuration: '16s' }} />
-          <span className="font-sans text-xs uppercase tracking-[0.35em] text-gold-400 font-semibold">
+          <Clock className="w-4 h-4 text-gold-600 animate-spin" style={{ animationDuration: '16s' }} />
+          <span className="font-sans text-xs uppercase tracking-[0.35em] text-gold-700 font-semibold">
             COUNTING DOWN THE MOMENTS
           </span>
         </div>
 
-        <h2 className="font-cinzel text-2xl sm:text-4xl font-bold gold-sweep tracking-wide mb-2">
+        <h2 className="font-cinzel text-2xl sm:text-4xl font-bold text-gold-rich tracking-wide mb-2">
           Until The Blessed Day
         </h2>
 
-        <p className="font-sans text-xs sm:text-sm text-ivory-200/80 font-light mb-8">
+        <p className="font-sans text-xs sm:text-sm text-[#38332B] font-medium mb-8">
           14 December 2026 • 12:00 PM
         </p>
 
-        <OrnateDivider className="mb-10 opacity-50" />
+        <OrnateDivider className="mb-10 opacity-70" />
 
         {/* Countdown Units Grid */}
         <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 sm:gap-6 max-w-2xl mx-auto">
@@ -84,10 +84,10 @@ export const CountdownTimer = () => {
               whileHover={{ y: -4, scale: 1.03 }}
               viewport={{ once: true }}
               transition={{ duration: 0.6, delay: idx * 0.1 }}
-              className="relative flex flex-col items-center justify-center p-4 sm:p-6 rounded-2xl bg-velvet-800/80 border border-gold-400/40 shadow-inner-gold group hover:border-gold-400/80 hover:shadow-gold-glow transition-all overflow-hidden"
+              className="relative flex flex-col items-center justify-center p-4 sm:p-6 rounded-2xl bg-[#FBF8F1] border border-gold-400/50 shadow-inner-gold group hover:border-gold-500 hover:shadow-md transition-all overflow-hidden"
             >
               {/* Subtle top gloss reflection */}
-              <div className="absolute top-0 inset-x-0 h-1/2 bg-gradient-to-b from-white/5 to-transparent pointer-events-none" />
+              <div className="absolute top-0 inset-x-0 h-1/2 bg-gradient-to-b from-white/40 to-transparent pointer-events-none" />
 
               {/* Number display with smooth keyframe transition */}
               <AnimatePresence mode="popLayout">
@@ -97,19 +97,19 @@ export const CountdownTimer = () => {
                   animate={{ y: 0, opacity: 1 }}
                   exit={{ y: 10, opacity: 0 }}
                   transition={{ duration: 0.3 }}
-                  className="font-cinzel text-3xl sm:text-5xl font-bold text-gold-gradient tracking-tight"
+                  className="font-cinzel text-3xl sm:text-5xl font-bold text-gold-rich tracking-tight"
                 >
                   {formatNumber(unit.value)}
                 </motion.div>
               </AnimatePresence>
 
               {/* Label */}
-              <div className="font-sans text-[11px] sm:text-xs uppercase tracking-[0.25em] text-gold-300 font-semibold mt-2">
+              <div className="font-sans text-[11px] sm:text-xs uppercase tracking-[0.25em] text-gold-800 font-semibold mt-2">
                 {unit.label}
               </div>
 
               {/* Pulsing bottom gold line */}
-              <div className="w-8 h-[1.5px] bg-gradient-to-r from-transparent via-gold-400/70 to-transparent mt-3" />
+              <div className="w-8 h-[1.5px] bg-gradient-to-r from-transparent via-gold-500/70 to-transparent mt-3" />
             </motion.div>
           ))}
         </div>

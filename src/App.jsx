@@ -23,9 +23,12 @@ export default function App() {
       invitationContentRef.current?.scrollIntoView({ behavior: 'smooth', block: 'start' });
     }, 1200);
   };
-
   return (
-    <div className="relative min-h-screen bg-velvet-950 text-ivory-100 bg-islamic-pattern selection:bg-gold-400/30 selection:text-gold-200 overflow-x-hidden">
+    <div className={`relative min-h-screen transition-colors duration-1000 ${
+      isOpened
+        ? 'bg-ivory-pattern text-[#1C1A17] selection:bg-gold-500/20 selection:text-gold-900'
+        : 'bg-velvet-950 text-ivory-100 bg-islamic-pattern selection:bg-gold-400/30 selection:text-gold-200'
+    } overflow-x-hidden`}>
       {/* Dynamic Gold Particles Ambient Canvas */}
       <FloatingParticles count={45} />
 

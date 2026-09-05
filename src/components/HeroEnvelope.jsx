@@ -87,16 +87,20 @@ export const HeroEnvelope = ({ isOpened, onOpen }) => {
         initial={{ opacity: 0, scale: 0.92, y: 20 }}
         animate={{ opacity: 1, scale: 1, y: 0 }}
         transition={{ duration: 1.2, ease: [0.16, 1, 0.3, 1] }}
-        className="relative z-10 w-full max-w-xl md:max-w-2xl bg-velvet-900/85 backdrop-blur-2xl border-2 border-gold-400/40 rounded-[2.5rem] p-6 sm:p-10 md:p-14 shadow-gold-glow-lg text-center royal-halo"
+        className={`relative z-10 w-full max-w-xl md:max-w-2xl rounded-[2.5rem] p-6 sm:p-10 md:p-14 text-center transition-all duration-1000 ${
+          isOpened
+            ? 'card-white-royal card-white-royal-glow text-[#1C1A17]'
+            : 'bg-velvet-900/85 backdrop-blur-2xl border-2 border-gold-400/40 shadow-gold-glow-lg text-ivory-100 royal-halo'
+        }`}
       >
         {/* Ornate Corner Flourishes */}
-        <CornerFlourish position="top-left" className="w-12 h-12 sm:w-16 sm:h-16 text-gold-400/80 absolute top-3 left-3" />
-        <CornerFlourish position="top-right" className="w-12 h-12 sm:w-16 sm:h-16 text-gold-400/80 absolute top-3 right-3" />
-        <CornerFlourish position="bottom-left" className="w-12 h-12 sm:w-16 sm:h-16 text-gold-400/80 absolute bottom-3 left-3" />
-        <CornerFlourish position="bottom-right" className="w-12 h-12 sm:w-16 sm:h-16 text-gold-400/80 absolute bottom-3 right-3" />
+        <CornerFlourish position="top-left" className={`w-12 h-12 sm:w-16 sm:h-16 absolute top-3 left-3 ${isOpened ? 'text-gold-600/70' : 'text-gold-400/80'}`} />
+        <CornerFlourish position="top-right" className={`w-12 h-12 sm:w-16 sm:h-16 absolute top-3 right-3 ${isOpened ? 'text-gold-600/70' : 'text-gold-400/80'}`} />
+        <CornerFlourish position="bottom-left" className={`w-12 h-12 sm:w-16 sm:h-16 absolute bottom-3 left-3 ${isOpened ? 'text-gold-600/70' : 'text-gold-400/80'}`} />
+        <CornerFlourish position="bottom-right" className={`w-12 h-12 sm:w-16 sm:h-16 absolute bottom-3 right-3 ${isOpened ? 'text-gold-600/70' : 'text-gold-400/80'}`} />
 
         {/* Double Gold Inner Border */}
-        <div className="absolute inset-2 sm:inset-3 border border-gold-400/25 rounded-[2rem] pointer-events-none" />
+        <div className={`absolute inset-2 sm:inset-3 border rounded-[2rem] pointer-events-none ${isOpened ? 'border-gold-500/30' : 'border-gold-400/25'}`} />
 
         {/* Bismillah Calligraphy Header with gentle breathing animation */}
         <motion.div
@@ -105,7 +109,7 @@ export const HeroEnvelope = ({ isOpened, onOpen }) => {
           transition={{ duration: 1, delay: 0.2 }}
           className="mb-4"
         >
-          <BismillahCalligraphy className="w-48 sm:w-64 text-gold-300 mx-auto filter drop-shadow-[0_2px_12px_rgba(212,175,55,0.4)]" />
+          <BismillahCalligraphy className={`w-48 sm:w-64 mx-auto filter drop-shadow-[0_2px_12px_rgba(212,175,55,0.4)] ${isOpened ? 'text-gold-600' : 'text-gold-300'}`} />
         </motion.div>
 
         {/* Royal Monogram Medallion Wax Seal */}
@@ -185,19 +189,25 @@ export const HeroEnvelope = ({ isOpened, onOpen }) => {
           transition={{ duration: 0.9, delay: 0.7 }}
           className="space-y-2 sm:space-y-3 mb-8"
         >
-          <div className="flex items-center justify-center gap-2 text-ivory-100 font-cormorant text-lg sm:text-2xl font-semibold tracking-widest uppercase">
-            <Calendar className="w-4 h-4 sm:w-5 sm:h-5 text-gold-400" />
+          <div className={`flex items-center justify-center gap-2 font-cormorant text-lg sm:text-2xl font-semibold tracking-widest uppercase ${
+            isOpened ? 'text-[#1C1A17]' : 'text-ivory-100'
+          }`}>
+            <Calendar className={`w-4 h-4 sm:w-5 sm:h-5 ${isOpened ? 'text-gold-600' : 'text-gold-400'}`} />
             <span>14 DECEMBER 2026</span>
           </div>
 
-          <div className="flex items-center justify-center gap-2 text-gold-200/90 font-sans text-sm sm:text-base tracking-widest uppercase font-light">
-            <Clock className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-gold-400" />
+          <div className={`flex items-center justify-center gap-2 font-sans text-sm sm:text-base tracking-widest uppercase font-medium ${
+            isOpened ? 'text-gold-700' : 'text-gold-200/90'
+          }`}>
+            <Clock className={`w-3.5 h-3.5 sm:w-4 sm:h-4 ${isOpened ? 'text-gold-600' : 'text-gold-400'}`} />
             <span>12:00 PM</span>
           </div>
 
-          <div className="flex items-center justify-center gap-2 text-ivory-200/80 font-sans text-xs sm:text-sm tracking-wide pt-1">
-            <MapPin className="w-3.5 h-3.5 text-gold-400 shrink-0" />
-            <span className="font-light">Shehnaz Palace Banquet Hall</span>
+          <div className={`flex items-center justify-center gap-2 font-sans text-xs sm:text-sm tracking-wide pt-1 font-medium ${
+            isOpened ? 'text-[#4A4237]' : 'text-ivory-200/80'
+          }`}>
+            <MapPin className={`w-3.5 h-3.5 shrink-0 ${isOpened ? 'text-gold-600' : 'text-gold-400'}`} />
+            <span>Shehnaz Palace Banquet Hall</span>
           </div>
         </motion.div>
 
