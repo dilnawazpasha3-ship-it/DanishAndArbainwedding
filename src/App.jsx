@@ -2,9 +2,10 @@ import React, { useState, useRef } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { FloatingParticles } from './components/FloatingParticles';
 import { AudioPlayer } from './components/AudioPlayer';
-import { RoyalCurtains } from './components/RoyalCurtains';
+import { RoyalPalaceGate } from './components/RoyalPalaceGate';
 import { HeroEnvelope } from './components/HeroEnvelope';
 import { CoupleSection } from './components/CoupleSection';
+import { BrideToBeSection } from './components/BrideToBeSection';
 import { NikahDetails } from './components/NikahDetails';
 import { VenueCard } from './components/VenueCard';
 import { EventTimeline } from './components/EventTimeline';
@@ -18,7 +19,7 @@ export default function App() {
 
   const handleOpenInvitation = () => {
     setIsOpened(true);
-    // Allow the theatrical 2.2s curtain unveiling to complete before gently inviting exploration
+    // Allow the theatrical 2.2s palace gate unveiling to complete before gently inviting exploration
     setTimeout(() => {
       invitationContentRef.current?.scrollIntoView({ behavior: 'smooth', block: 'start' });
     }, 2200);
@@ -33,8 +34,8 @@ export default function App() {
       {/* Dynamic Gold Dust, Stars & Drifting Flower Petals Canvas */}
       <FloatingParticles count={60} />
 
-      {/* Royal Velvet Palace Curtains Opening Animation */}
-      <RoyalCurtains isOpened={isOpened} onOpen={handleOpenInvitation} />
+      {/* 3D Royal Palace Grand Gate Opening Animation with Lanterns & Bougainvillea */}
+      <RoyalPalaceGate isOpened={isOpened} onOpen={handleOpenInvitation} />
 
       {/* Persistent Floating Audio Controller */}
       <AudioPlayer isTriggered={isOpened} />
@@ -56,6 +57,9 @@ export default function App() {
             >
               {/* 2. COUPLE SECTION */}
               <CoupleSection />
+
+              {/* 2.1 BRIDE TO BE / DEAR DECEMBER AESTHETIC SECTION */}
+              <BrideToBeSection />
 
               {/* 3. WEDDING & NIKAH SECTION */}
               <NikahDetails />
