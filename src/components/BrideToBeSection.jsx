@@ -1,15 +1,15 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import { Sparkles, Heart, Calendar } from 'lucide-react';
-import { CornerFlourish, OrnateDivider } from './OrnamentalElements';
-import brideImg from '../assets/bride-tobe.jpg';
+import { Sparkles, Heart, Calendar, Moon } from 'lucide-react';
+import { CornerFlourish, OrnateDivider, IslamicStar } from './OrnamentalElements';
 
 /**
  * Aesthetic Bride-To-Be Section ("Dear December")
+ * Pure typography, hanging lanterns, and ornate royal Islamic motifs
  */
 export const BrideToBeSection = () => {
   return (
-    <section id="bride-to-be" className="relative py-14 md:py-20 px-4 max-w-4xl mx-auto text-center overflow-hidden">
+    <section id="bride-to-be" className="relative py-12 md:py-16 px-4 max-w-4xl mx-auto text-center overflow-hidden">
       <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(212,175,55,0.12)_0%,transparent_70%)] pointer-events-none" />
 
       <motion.div
@@ -24,6 +24,7 @@ export const BrideToBeSection = () => {
         <CornerFlourish position="bottom-left" className="w-12 h-12 text-gold-600/70 absolute bottom-3 left-3" />
         <CornerFlourish position="bottom-right" className="w-12 h-12 text-gold-600/70 absolute bottom-3 right-3" />
 
+        {/* Top Hanging Lanterns */}
         <div className="absolute top-0 left-6 sm:left-12 pointer-events-none hidden sm:block">
           <motion.div
             animate={{ rotate: [-3, 3, -3] }}
@@ -50,12 +51,14 @@ export const BrideToBeSection = () => {
           </motion.div>
         </div>
 
+        {/* Header Badge */}
         <div className="inline-flex items-center gap-2 px-5 py-1.5 rounded-full bg-gradient-to-r from-rose-500/10 via-gold-400/20 to-rose-500/10 border border-gold-500/50 text-gold-900 text-xs font-sans tracking-[0.25em] uppercase font-bold mb-3">
           <Sparkles className="w-3.5 h-3.5 text-gold-600 animate-spin" style={{ animationDuration: '6s' }} />
           <span>BRIDE TO BE</span>
           <Sparkles className="w-3.5 h-3.5 text-gold-600 animate-spin" style={{ animationDuration: '6s' }} />
         </div>
 
+        {/* "Dear December" Signature Calligraphy */}
         <motion.div
           initial={{ opacity: 0, scale: 0.9 }}
           whileInView={{ opacity: 1, scale: 1 }}
@@ -73,40 +76,20 @@ export const BrideToBeSection = () => {
 
         <OrnateDivider className="my-5 opacity-70" />
 
-        <div className="relative my-6 max-w-[260px] sm:max-w-[300px] mx-auto select-none">
-          <div className="relative rounded-t-[9rem] rounded-b-[2rem] p-2 bg-gradient-to-b from-[#F5E296] via-[#D4AF37] to-[#876624] shadow-[0_15px_35px_rgba(212,175,55,0.35)]">
-            <div className="relative rounded-t-[8.5rem] rounded-b-[1.8rem] overflow-hidden bg-velvet-950 aspect-[9/14] border-2 border-gold-200/80">
-              <motion.img
-                src={brideImg}
-                alt="Bride to Be - Arbaeen"
-                className="w-full h-full object-cover object-center transform hover:scale-105 transition-transform duration-700"
-                animate={{
-                  scale: [1, 1.02, 1],
-                }}
-                transition={{
-                  duration: 6,
-                  repeat: Infinity,
-                  ease: 'easeInOut',
-                }}
-              />
-
-              <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-black/20 pointer-events-none" />
-
-              <div className="absolute top-[38%] left-[54%] pointer-events-none">
-                <span className="relative flex h-3 w-3">
-                  <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-amber-200 opacity-90" />
-                  <span className="relative inline-flex rounded-full h-3 w-3 bg-white shadow-[0_0_10px_#FFFFFF]" />
-                </span>
-              </div>
-
-              <div className="absolute bottom-3 inset-x-0 flex items-center justify-center gap-1.5 text-gold-200 font-cinzel text-xs font-bold uppercase tracking-widest drop-shadow">
-                <Heart className="w-3 h-3 text-rose-400 fill-rose-400" />
-                <span>Bride to Be • Arbaeen</span>
-                <Heart className="w-3 h-3 text-rose-400 fill-rose-400" />
-              </div>
-            </div>
+        {/* Ornate Royal Emblem (Clean Vector Motif without any photo) */}
+        <motion.div
+          animate={{ scale: [1, 1.03, 1] }}
+          transition={{ duration: 5, repeat: Infinity, ease: 'easeInOut' }}
+          className="my-6 inline-flex flex-col items-center justify-center"
+        >
+          <div className="relative w-24 h-24 sm:w-28 sm:h-28 rounded-full border-2 border-gold-400/80 bg-gradient-to-br from-[#FAF5E6] via-[#F3E9CD] to-[#DFCBA1] flex flex-col items-center justify-center shadow-gold-glow">
+            <div className="absolute inset-1.5 rounded-full border border-dashed border-gold-700/40" />
+            <Moon className="w-8 h-8 text-teal-700 stroke-[1.5] mb-1" />
+            <span className="font-cinzel text-xs uppercase tracking-widest text-gold-900 font-bold">
+              Arbaeen
+            </span>
           </div>
-        </div>
+        </motion.div>
 
         <div className="max-w-xl mx-auto space-y-3 mt-4 text-[#2D2821]">
           <p className="font-cormorant italic text-lg sm:text-xl md:text-2xl text-gold-900 leading-relaxed font-semibold">
